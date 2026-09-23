@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import mainLogo from '../assets/main-logo.png';
 
 export default function Navbar() {
   const { user, logout, isAdmin } = useAuth();
@@ -38,13 +39,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-              <span className="text-white font-black text-sm">LnL</span>
-            </div>
-            <span className="text-xl font-black text-gray-900 tracking-tight">
-              Like<span className="text-brand-500">N</span>Like
-            </span>
+          <Link to="/" className="flex items-center group flex-shrink-0 py-1">
+            <img 
+              src={mainLogo} 
+              alt="Like N Like" 
+              className="h-9 sm:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-105" 
+            />
           </Link>
 
           {/* Desktop Nav Links */}

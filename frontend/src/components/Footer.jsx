@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import mainLogo from '../assets/main-logo.png';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -21,13 +22,12 @@ export default function Footer() {
         <div className="py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2.5 mb-4 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center shadow-sm">
-                <span className="text-white font-black text-sm">LnL</span>
-              </div>
-              <span className="text-xl font-black tracking-tight">
-                Like<span className="text-brand-500">N</span>Like
-              </span>
+            <Link to="/" className="inline-flex items-center mb-4 group bg-white/10 px-3 py-2 rounded-2xl hover:bg-white/15 transition-all">
+              <img 
+                src={mainLogo} 
+                alt="Like N Like" 
+                className="h-8 w-auto object-contain" 
+              />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
               Your one-stop destination for premium clothing for Men, Women & Kids. Style that defines you.
