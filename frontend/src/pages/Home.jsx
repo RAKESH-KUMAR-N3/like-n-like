@@ -82,9 +82,9 @@ export default function Home() {
     <div className="overflow-hidden bg-[#F7F4EF]">
 
       {/* ════════════════════════════════════════════════════
-          HERO SECTION — Zero Gap, Direct Match to Reference
+          HERO SECTION — Scaled & Proportioned to Viewport
       ════════════════════════════════════════════════════ */}
-      <section className="relative bg-[#FBF9F5] overflow-hidden pt-6 pb-4 lg:pt-10 lg:pb-0">
+      <section className="relative bg-[#FBF9F5] overflow-hidden pt-4 pb-2 lg:pt-8 lg:pb-0 border-b border-gray-100">
 
         {/* Faint world-map watermark */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.035]">
@@ -93,29 +93,29 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 w-full relative z-10">
-          <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between min-h-[580px] lg:min-h-[620px] xl:min-h-[660px]">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between min-h-[500px] lg:min-h-[540px]">
 
-            {/* ── LEFT: Text & CTAs (Tight layout, no empty gap) ── */}
-            <div className="w-full lg:w-[48%] xl:w-[45%] flex-shrink-0 space-y-5 animate-fade-up py-6 lg:py-10 z-20">
+            {/* ── LEFT: Text & CTAs ── */}
+            <div className="w-full lg:w-[48%] xl:w-[46%] flex-shrink-0 space-y-4 py-4 lg:py-6 z-20">
 
               {/* Tagline label */}
-              <div className="flex items-center gap-3 text-[11px] sm:text-xs font-bold tracking-[0.25em] text-gray-500 uppercase">
-                <span className="w-8 h-[1.5px] bg-gray-400" />
+              <div className="flex items-center gap-3 text-[10px] sm:text-xs font-bold tracking-[0.25em] text-gray-500 uppercase">
+                <span className="w-7 h-[1.5px] bg-gray-400" />
                 <span>FASHION FOR EVERY YOU</span>
-                <span className="w-8 h-[1.5px] bg-gray-400" />
+                <span className="w-7 h-[1.5px] bg-gray-400" />
               </div>
 
               {/* Main headline stack */}
-              <div className="space-y-1.5 select-none">
+              <div className="space-y-1 select-none">
 
                 {/* UNIQUE + Crown Doodle */}
                 <div className="relative inline-flex items-start">
-                  <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black font-display tracking-tight text-[#1A1A1A] uppercase leading-none">
+                  <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black font-display tracking-tight text-[#1A1A1A] uppercase leading-none">
                     UNIQUE
                   </h1>
-                  <span className="absolute -top-5 -right-8 sm:-top-7 sm:-right-10 rotate-12">
-                    <svg className="w-9 h-9 sm:w-11 sm:h-11 text-[#F5B82E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  <span className="absolute -top-4 -right-7 sm:-top-5 sm:-right-8 rotate-12">
+                    <svg className="w-7 h-7 sm:w-9 sm:h-9 text-[#F5B82E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z" fill="#F5B82E" fillOpacity="0.25" />
                       <circle cx="2" cy="4" r="1.5" fill="#F5B82E" />
                       <circle cx="12" cy="3" r="1.5" fill="#F5B82E" />
@@ -126,37 +126,37 @@ export default function Home() {
 
                 {/* COLLECTIONS — Red brush stroke banner */}
                 <div className="block">
-                  <div className="relative inline-block my-1">
+                  <div className="relative inline-block my-0.5">
                     <svg className="absolute inset-0 w-[108%] -left-[4%] h-full -z-10" viewBox="0 0 540 100" preserveAspectRatio="none">
                       <path d="M 15 20 C 45 14, 120 16, 220 13 C 320 11, 440 14, 520 18 C 536 19, 542 26, 538 40 C 543 54, 534 70, 539 82 C 536 90, 515 88, 480 86 C 390 90, 260 86, 140 89 C 70 90, 25 86, 12 83 C 4 80, -3 68, 3 48 C -2 34, 4 24, 15 20 Z" fill="#D91E2B" />
                       <path d="M 525 28 C 538 33, 542 43, 534 50 Z" fill="#D91E2B" opacity="0.85" />
                     </svg>
-                    <span className="relative z-10 px-5 sm:px-9 py-1 sm:py-2 block text-white font-black text-3xl sm:text-5xl lg:text-6xl tracking-wider uppercase font-display drop-shadow-md">
+                    <span className="relative z-10 px-5 sm:px-7 py-1 block text-white font-black text-2xl sm:text-3xl lg:text-[40px] tracking-wider uppercase font-display drop-shadow-md">
                       COLLECTIONS
                     </span>
                   </div>
                 </div>
 
                 {/* AFFORDABLE PRICES */}
-                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#1A1A1A] uppercase leading-tight pt-1">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 text-2xl sm:text-3xl lg:text-[34px] font-black font-display tracking-tight text-[#1A1A1A] uppercase leading-tight pt-0.5">
                   <span>AFFORDABLE</span>
-                  <span className="relative inline-block px-3 py-0.5">
+                  <span className="relative inline-block px-2 sm:px-2.5 py-0.5">
                     <span className="absolute inset-0 bg-[#FFD23F] -rotate-1 rounded-sm -z-10 shadow-sm" />
                     <span>PRICES</span>
                   </span>
                   {/* Subtle dotted flight curve */}
                   <span className="hidden sm:inline-block relative">
-                    <svg className="w-14 h-7 -rotate-6 text-gray-500" viewBox="0 0 100 40" fill="none">
+                    <svg className="w-12 h-6 -rotate-6 text-gray-500" viewBox="0 0 100 40" fill="none">
                       <path d="M 5 35 Q 50 -10 95 20" stroke="currentColor" strokeWidth="2.2" strokeDasharray="4 4" />
                     </svg>
                   </span>
                 </div>
 
                 {/* WORLDWIDE SHIPPING */}
-                <div className="flex items-center gap-3 text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight leading-tight">
+                <div className="flex items-center gap-2.5 text-2xl sm:text-3xl lg:text-[34px] font-black font-display tracking-tight leading-tight">
                   <span className="text-[#137547]">WORLDWIDE</span>
                   <span className="text-[#1A1A1A]">SHIPPING</span>
-                  <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-[#137547] text-[#137547] p-1">
+                  <div className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-[#137547] text-[#137547] p-1">
                     <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                       <circle cx="12" cy="12" r="10" />
                       <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
@@ -166,15 +166,15 @@ export default function Home() {
               </div>
 
               {/* Supporting copy */}
-              <p className="text-sm sm:text-base text-gray-600 max-w-lg font-medium leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-600 max-w-md font-medium leading-relaxed">
                 Explore trendy and unique fashion for Men, Women and Kids at affordable prices. Your favourite styles, delivered anywhere in the world.
               </p>
 
               {/* CTA Buttons — Shop Men →, Shop Women →, Shop Kids → */}
-              <div className="flex flex-wrap items-center gap-3 pt-1">
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
                 <Link
                   to="/men"
-                  className="px-6 py-3 bg-[#D91E2B] hover:bg-[#B81822] text-white font-bold text-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center gap-1.5"
+                  className="px-5 py-2.5 bg-[#D91E2B] hover:bg-[#B81822] text-white font-bold text-xs sm:text-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center gap-1.5"
                 >
                   <span>Shop Men</span>
                   <span>→</span>
@@ -182,7 +182,7 @@ export default function Home() {
 
                 <Link
                   to="/women"
-                  className="px-6 py-3 bg-white hover:bg-gray-50 text-[#1A1A1A] border border-gray-300 hover:border-gray-900 font-bold text-sm rounded-lg shadow-sm hover:shadow transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center gap-1.5"
+                  className="px-5 py-2.5 bg-white hover:bg-gray-50 text-[#1A1A1A] border border-gray-300 hover:border-gray-900 font-bold text-xs sm:text-sm rounded-lg shadow-sm hover:shadow transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center gap-1.5"
                 >
                   <span>Shop Women</span>
                   <span>→</span>
@@ -190,7 +190,7 @@ export default function Home() {
 
                 <Link
                   to="/kids"
-                  className="px-6 py-3 bg-[#1A1A1A] hover:bg-black text-white font-bold text-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center gap-1.5"
+                  className="px-5 py-2.5 bg-[#1A1A1A] hover:bg-black text-white font-bold text-xs sm:text-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center gap-1.5"
                 >
                   <span>Shop Kids</span>
                   <span>→</span>
@@ -198,55 +198,55 @@ export default function Home() {
               </div>
 
               {/* Category Quick Dock (White Curved Pill at Bottom) */}
-              <div className="pt-4 lg:pt-8">
-                <div className="inline-flex items-center gap-5 sm:gap-8 bg-white/95 backdrop-blur-md px-5 sm:px-7 py-3 rounded-2xl sm:rounded-3xl border border-gray-200/90 shadow-md hover:shadow-lg transition-shadow">
+              <div className="pt-3 lg:pt-6">
+                <div className="inline-flex items-center gap-4 sm:gap-7 bg-white/95 backdrop-blur-md px-4 sm:px-6 py-2 sm:py-2.5 rounded-2xl sm:rounded-full border border-gray-200/90 shadow-md hover:shadow-lg transition-shadow">
                   
                   {/* Men Avatar */}
-                  <Link to="/men" className="flex items-center gap-3 group">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-gray-200 group-hover:border-[#D91E2B] transition-colors shrink-0 bg-gray-100">
+                  <Link to="/men" className="flex items-center gap-2.5 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-gray-200 group-hover:border-[#D91E2B] transition-colors shrink-0 bg-gray-100">
                       <img
-                        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=160&q=80"
+                        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=140&q=80"
                         alt="Men"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm font-black text-[#1A1A1A] group-hover:text-[#D91E2B] transition-colors leading-tight">Men</p>
-                      <span className="text-xs text-gray-400 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                      <span className="text-[11px] text-gray-400 group-hover:translate-x-1 inline-block transition-transform">→</span>
                     </div>
                   </Link>
 
-                  <div className="w-[1px] h-9 bg-gray-200" />
+                  <div className="w-[1px] h-7 bg-gray-200" />
 
                   {/* Women Avatar */}
-                  <Link to="/women" className="flex items-center gap-3 group">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-gray-200 group-hover:border-pink-500 transition-colors shrink-0 bg-gray-100">
+                  <Link to="/women" className="flex items-center gap-2.5 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-gray-200 group-hover:border-pink-500 transition-colors shrink-0 bg-gray-100">
                       <img
-                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&q=80"
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=140&q=80"
                         alt="Women"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm font-black text-[#1A1A1A] group-hover:text-pink-600 transition-colors leading-tight">Women</p>
-                      <span className="text-xs text-gray-400 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                      <span className="text-[11px] text-gray-400 group-hover:translate-x-1 inline-block transition-transform">→</span>
                     </div>
                   </Link>
 
-                  <div className="w-[1px] h-9 bg-gray-200" />
+                  <div className="w-[1px] h-7 bg-gray-200" />
 
                   {/* Kids Avatar */}
-                  <Link to="/kids" className="flex items-center gap-3 group">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-gray-200 group-hover:border-amber-500 transition-colors shrink-0 bg-gray-100">
+                  <Link to="/kids" className="flex items-center gap-2.5 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-gray-200 group-hover:border-amber-500 transition-colors shrink-0 bg-gray-100">
                       <img
-                        src="https://images.unsplash.com/photo-1543332164-6e82f355badc?w=160&q=80"
+                        src="https://images.unsplash.com/photo-1543332164-6e82f355badc?w=140&q=80"
                         alt="Kids"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
                     <div>
                       <p className="text-xs sm:text-sm font-black text-[#1A1A1A] group-hover:text-amber-600 transition-colors leading-tight">Kids</p>
-                      <span className="text-xs text-gray-400 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                      <span className="text-[11px] text-gray-400 group-hover:translate-x-1 inline-block transition-transform">→</span>
                     </div>
                   </Link>
 
@@ -255,83 +255,83 @@ export default function Home() {
 
             </div>
 
-            {/* ── RIGHT: Main Models & Graphic Backdrops (Zero Gap) ── */}
-            <div className="w-full lg:w-[56%] xl:w-[58%] relative flex items-end justify-center lg:justify-end -mt-6 lg:mt-0 lg:-ml-12 xl:-ml-16 z-10">
+            {/* ── RIGHT: Main Models & Graphic Backdrops ── */}
+            <div className="w-full lg:w-[54%] xl:w-[56%] relative flex items-end justify-center lg:justify-end -ml-4 lg:-ml-10 z-10">
 
-              {/* Big Yellow Sun Circle Backdrop (positioned behind the man, touching the text) */}
+              {/* Big Yellow Sun Circle Backdrop (positioned behind the man) */}
               <div 
-                className="absolute left-[0%] sm:left-[2%] lg:left-[4%] top-[10%] sm:top-[6%] w-[320px] sm:w-[460px] lg:w-[520px] xl:w-[560px] aspect-square rounded-full bg-[#F4B324] -z-0 pointer-events-none shadow-sm"
+                className="absolute left-[2%] sm:left-[5%] top-[8%] sm:top-[4%] w-[270px] sm:w-[370px] lg:w-[430px] aspect-square rounded-full bg-[#F4B324] -z-0 pointer-events-none shadow-sm"
               />
 
               {/* Dark Forest Green Arch behind woman */}
               <div 
-                className="absolute right-[8%] sm:right-[12%] lg:right-[14%] top-[20%] sm:top-[16%] w-[220px] sm:w-[300px] lg:w-[340px] xl:w-[370px] h-[320px] sm:h-[440px] lg:h-[500px] xl:h-[540px] rounded-t-full bg-[#1C744C] -z-0 pointer-events-none shadow-sm"
+                className="absolute right-[8%] sm:right-[12%] top-[16%] sm:top-[12%] w-[190px] sm:w-[250px] lg:w-[290px] h-[260px] sm:h-[350px] lg:h-[410px] rounded-t-full bg-[#1C744C] -z-0 pointer-events-none shadow-sm"
               />
 
               {/* Worldwide Shipping Script & Airplane Dotted Flight Loop */}
-              <div className="absolute top-2 right-4 sm:top-6 sm:right-16 lg:right-20 z-20 select-none pointer-events-none text-right">
-                <div className="inline-flex items-center gap-1.5 font-bold text-[#1A1A1A] text-sm sm:text-base italic">
+              <div className="absolute top-1 right-2 sm:top-4 sm:right-12 lg:right-16 z-20 select-none pointer-events-none text-right">
+                <div className="inline-flex items-center gap-1.5 font-bold text-[#1A1A1A] text-xs sm:text-sm italic">
                   <span style={{ fontFamily: 'Georgia, serif' }}>Worldwide Shipping</span>
-                  <span className="text-base sm:text-lg">✈️</span>
+                  <span className="text-sm sm:text-base">✈️</span>
                 </div>
                 {/* Dotted arc flight line */}
-                <svg className="w-36 sm:w-48 h-10 ml-auto text-gray-600" viewBox="0 0 160 40" fill="none">
+                <svg className="w-32 sm:w-44 h-8 ml-auto text-gray-600" viewBox="0 0 160 40" fill="none">
                   <path d="M 10 35 Q 70 -5 150 20" stroke="currentColor" strokeWidth="1.8" strokeDasharray="4 4" />
                 </svg>
               </div>
 
-              {/* Main Model Cutout Image (large scale, touching the left side) */}
-              <div className="relative z-10 w-full max-w-[580px] lg:max-w-[700px] xl:max-w-[780px] flex items-end">
+              {/* Main Model Cutout Image — height bounded so kid is fully visible */}
+              <div className="relative z-10 flex items-end">
                 <img
                   src={heroImage}
                   alt="Like N Like Models"
-                  className="w-full h-auto object-contain object-bottom filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.16)]"
+                  className="h-[340px] sm:h-[420px] lg:h-[480px] xl:h-[510px] w-auto max-w-full object-contain object-bottom filter drop-shadow-[0_16px_24px_rgba(0,0,0,0.15)]"
                 />
               </div>
 
               {/* Floating Badge 1: Unique Collections */}
-              <div className="absolute right-0 sm:-right-2 top-24 sm:top-36 z-20 bg-[#FFF5EE]/95 backdrop-blur-md border border-[#FED7C3] rounded-2xl p-2.5 sm:p-3.5 shadow-xl flex items-center gap-3 animate-float max-w-[190px] sm:max-w-[220px]">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#E62935] text-white flex items-center justify-center shrink-0 shadow-md">
+              <div className="absolute right-0 sm:right-2 top-16 sm:top-24 z-20 bg-[#FFF5EE]/95 backdrop-blur-md border border-[#FED7C3] rounded-xl p-2 sm:p-2.5 shadow-lg flex items-center gap-2.5 animate-float max-w-[170px] sm:max-w-[195px]">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#E62935] text-white flex items-center justify-center shrink-0 shadow-sm">
                   {/* T-Shirt SVG */}
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M16 2l4 4-2 3-2-1v14H8V8L6 9 4 6l4-4h2a2 2 0 004 0h2z" />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs sm:text-sm font-extrabold text-[#1A1A1A] leading-tight">Unique Collections</p>
-                  <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium leading-tight mt-0.5">Styles You Won't Find Everywhere</p>
+                  <p className="text-[11px] sm:text-xs font-extrabold text-[#1A1A1A] leading-tight">Unique Collections</p>
+                  <p className="text-[9px] sm:text-[10px] text-gray-500 font-medium leading-tight mt-0.5">Styles You Won't Find Everywhere</p>
                 </div>
               </div>
 
               {/* Floating Badge 2: Affordable Prices */}
-              <div className="absolute right-1 sm:-right-1 top-52 sm:top-68 z-20 bg-[#EEFAF2]/95 backdrop-blur-md border border-[#C8EED5] rounded-2xl p-2.5 sm:p-3.5 shadow-xl flex items-center gap-3 max-w-[190px] sm:max-w-[220px]">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#188046] text-white flex items-center justify-center shrink-0 shadow-md">
+              <div className="absolute right-1 sm:right-2 top-38 sm:top-52 z-20 bg-[#EEFAF2]/95 backdrop-blur-md border border-[#C8EED5] rounded-xl p-2 sm:p-2.5 shadow-lg flex items-center gap-2.5 max-w-[170px] sm:max-w-[195px]">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#188046] text-white flex items-center justify-center shrink-0 shadow-sm">
                   {/* Price Tag SVG */}
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12.586 2.586A2 2 0 0011.172 2H4a2 2 0 00-2 2v7.172a2 2 0 00.586 1.414l8 8a2 2 0 002.828 0l7.172-7.172a2 2 0 000-2.828l-8-8zM7 9a2 2 0 110-4 2 2 0 010 4z" />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs sm:text-sm font-extrabold text-[#1A1A1A] leading-tight">Affordable Prices</p>
-                  <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium leading-tight mt-0.5">Trendy Fashion For Everyone</p>
+                  <p className="text-[11px] sm:text-xs font-extrabold text-[#1A1A1A] leading-tight">Affordable Prices</p>
+                  <p className="text-[9px] sm:text-[10px] text-gray-500 font-medium leading-tight mt-0.5">Trendy Fashion For Everyone</p>
                 </div>
               </div>
 
               {/* Vintage Postal Rubber Stamp Badge (Bottom Right) */}
-              <div className="absolute right-4 sm:right-6 bottom-8 sm:bottom-12 z-20 select-none pointer-events-none opacity-80">
-                <div className="w-18 h-18 sm:w-22 sm:h-22 rounded-full border-2 border-dashed border-gray-400 p-1 flex items-center justify-center -rotate-12">
-                  <div className="w-full h-full rounded-full border border-gray-400 flex flex-col items-center justify-center text-center p-1">
-                    <span className="text-[7px] sm:text-[8px] font-black uppercase tracking-wider text-gray-500">FASHION AROUND</span>
-                    <span className="text-xs my-0.5">🌐</span>
-                    <span className="text-[7px] sm:text-[8px] font-black uppercase tracking-wider text-gray-500">THE WORLD</span>
+              <div className="absolute right-2 sm:right-6 bottom-6 sm:bottom-10 z-20 select-none pointer-events-none opacity-80">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-dashed border-gray-400 p-1 flex items-center justify-center -rotate-12">
+                  <div className="w-full h-full rounded-full border border-gray-400 flex flex-col items-center justify-center text-center p-0.5">
+                    <span className="text-[6px] sm:text-[7px] font-black uppercase tracking-wider text-gray-500">FASHION AROUND</span>
+                    <span className="text-[10px] sm:text-xs my-0.5">🌐</span>
+                    <span className="text-[6px] sm:text-[7px] font-black uppercase tracking-wider text-gray-500">THE WORLD</span>
                   </div>
                 </div>
               </div>
 
               {/* Carousel Indicators < 01/03 > (Bottom Right) */}
-              <div className="absolute right-4 sm:right-6 bottom-1 sm:bottom-3 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-gray-200 text-xs font-bold text-[#1A1A1A] shadow-sm">
+              <div className="absolute right-2 sm:right-6 bottom-1 z-20 flex items-center gap-1.5 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-gray-200 text-[11px] font-bold text-[#1A1A1A] shadow-sm">
                 <button className="hover:text-[#D91E2B] transition-colors">‹</button>
-                <span className="text-[11px] font-extrabold tracking-widest text-gray-500">01 / 03</span>
+                <span className="text-[10px] font-extrabold tracking-widest text-gray-500">01 / 03</span>
                 <button className="hover:text-[#D91E2B] transition-colors">›</button>
               </div>
 
