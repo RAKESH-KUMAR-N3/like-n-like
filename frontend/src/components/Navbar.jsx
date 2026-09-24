@@ -34,38 +34,56 @@ export default function Navbar() {
     { to: '/recent-hits', label: 'Recent Hits 🔥' },
   ];
 
-  const activeCls = 'text-brand-500 after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-[2.5px] after:bg-brand-500 after:rounded-full';
-  const inactiveCls = 'text-gray-700 hover:text-brand-500';
+  const activeCls = 'text-brand-600 font-bold after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-[2px] after:bg-gradient-to-r after:from-brand-500 after:to-orange-500 after:rounded-full';
+  const inactiveCls = 'text-gray-700 hover:text-brand-600 font-semibold';
 
   return (
-    <nav className={`sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300 ${scrolled ? 'shadow-md' : ''}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-
-          {/* Logo */}
-          <Link to="/" className="flex items-center group flex-shrink-0 py-1">
-            <img 
-              src={mainLogo} 
-              alt="Like N Like" 
-              className="h-9 sm:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-105" 
-            />
-          </Link>
-
-          {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-7">
-            {navLinks.map(({ to, label }) => (
-              <NavLink
-                key={to}
-                to={to}
-                end={to === '/'}
-                className={({ isActive }) =>
-                  `relative text-sm font-semibold pb-1 transition-colors duration-200 ${isActive ? activeCls : inactiveCls}`
-                }
-              >
-                {label}
-              </NavLink>
-            ))}
+    <header className="sticky top-0 z-50">
+      {/* Top Announcement Bar */}
+      <div className="bg-gradient-to-r from-gray-950 via-zinc-900 to-gray-950 text-white text-[11px] font-medium py-1.5 px-4 border-b border-white/10 tracking-wider">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="hidden sm:flex items-center gap-3 text-zinc-400">
+            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> 100% Genuine Apparel</span>
+            <span className="text-zinc-700">•</span>
+            <span>⚡ Express Dispatch</span>
+            <span className="text-zinc-700">•</span>
+            <span>🔄 7-Day Hassle-Free Returns</span>
           </div>
+          <div className="flex items-center justify-center sm:justify-end w-full sm:w-auto gap-2 text-amber-300 font-semibold">
+            <span>🏷️ Special: Use <span className="text-white font-extrabold px-1.5 py-0.5 bg-white/10 rounded">WELCOME10</span> for 10% OFF</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navbar */}
+      <nav className={`bg-white/85 backdrop-blur-xl border-b border-gray-100/90 transition-all duration-300 ${scrolled ? 'shadow-md shadow-gray-200/50 py-0.5' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-18">
+
+            {/* Logo */}
+            <Link to="/" className="flex items-center group flex-shrink-0 py-1">
+              <img 
+                src={mainLogo} 
+                alt="Like N Like" 
+                className="h-9 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+              />
+            </Link>
+
+            {/* Desktop Nav Links */}
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map(({ to, label }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={to === '/'}
+                  className={({ isActive }) =>
+                    `relative text-sm pb-1 transition-all duration-200 ${isActive ? activeCls : inactiveCls}`
+                  }
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </div>
 
           {/* Actions: Wishlist, Cart & Auth */}
           <div className="flex items-center gap-2 sm:gap-3">
@@ -240,5 +258,6 @@ export default function Navbar() {
         <div className="fixed inset-0 z-40" onClick={() => setDropdownOpen(false)} />
       )}
     </nav>
+  </header>
   );
 }

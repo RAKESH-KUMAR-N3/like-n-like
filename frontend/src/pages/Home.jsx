@@ -5,13 +5,13 @@ import ProductCard from '../components/ProductCard';
 
 function SkeletonCard() {
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 animate-pulse">
-      <div className="bg-gray-200" style={{ aspectRatio: '3/4' }} />
-      <div className="p-4 space-y-3">
-        <div className="h-3 bg-gray-200 rounded-full w-1/3" />
-        <div className="h-4 bg-gray-200 rounded-full w-3/4" />
-        <div className="h-3 bg-gray-200 rounded-full w-1/2" />
-        <div className="h-10 bg-gray-200 rounded-xl" />
+    <div className="bg-white rounded-3xl overflow-hidden shadow-luxe border border-gray-100/80 p-3">
+      <div className="skeleton-shimmer rounded-2xl w-full" style={{ aspectRatio: '3/4' }} />
+      <div className="p-3 space-y-2.5">
+        <div className="h-3 skeleton-shimmer rounded-full w-1/3" />
+        <div className="h-4 skeleton-shimmer rounded-full w-3/4" />
+        <div className="h-4 skeleton-shimmer rounded-full w-1/2" />
+        <div className="h-9 skeleton-shimmer rounded-xl mt-3" />
       </div>
     </div>
   );
@@ -22,7 +22,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = 'Like N Like — Premium Clothing for Men, Women & Kids';
+    document.title = 'Like N Like — Haute Couture & Premium Streetwear';
     API.get('/products?featured=true&limit=8')
       .then((res) => { if (res.data.success) setFeatured(res.data.data); })
       .catch(() => {})
@@ -30,149 +30,291 @@ export default function Home() {
   }, []);
 
   const categories = [
-    { to: '/men', emoji: '👔', label: 'Men', sub: 'Shirts, Pants, Jackets & more', gradient: 'from-blue-900 to-blue-700', hover: 'group-hover:text-blue-700', bg: 'group-hover:bg-white' },
-    { to: '/women', emoji: '👗', label: 'Women', sub: 'Dresses, Kurtis, Tops & more', gradient: 'from-pink-700 to-rose-500', hover: 'group-hover:text-pink-600', bg: 'group-hover:bg-white' },
-    { to: '/kids', emoji: '🧒', label: 'Kids', sub: 'T-Shirts, Dresses, Sets & more', gradient: 'from-yellow-500 to-orange-400', hover: 'group-hover:text-orange-500', bg: 'group-hover:bg-white' },
+    {
+      to: '/men',
+      label: 'Men',
+      tagline: 'Refined Tailoring & Urban Edge',
+      count: 'Premium Shirts, Denim & Outerwear',
+      image: 'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?w=800&q=80',
+      badge: 'NEW SEASON'
+    },
+    {
+      to: '/women',
+      label: 'Women',
+      tagline: 'Modern Elegance & Chic Silhouettes',
+      count: 'Designer Kurtis, Dresses & Tops',
+      image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80',
+      badge: 'TRENDING'
+    },
+    {
+      to: '/kids',
+      label: 'Kids',
+      tagline: 'Playful Comfort & Festive Vibrance',
+      count: 'Everyday Sets, Tees & Ethnic',
+      image: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=800&q=80',
+      badge: 'POPULAR'
+    },
   ];
 
   return (
-    <main>
-      {/* HERO */}
-      <section className="bg-gradient-to-br from-gray-950 via-[#1e1b4b] to-[#1a1a2e] text-white overflow-hidden relative">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-brand-500/10 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-purple-500/10 blur-3xl" />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-500/20 border border-brand-500/30 rounded-full text-orange-300 text-sm font-semibold mb-6">
-                <span className="w-2 h-2 bg-brand-400 rounded-full animate-pulse" />
-                New Collection 2024 🔥
+    <div className="overflow-hidden">
+      {/* HERO SECTION */}
+      <section className="relative bg-gradient-to-br from-gray-950 via-[#10121a] to-[#0a0a0f] text-white pt-16 pb-24 lg:py-28 overflow-hidden">
+        {/* Ambient Glowing Orbs */}
+        <div className="absolute top-10 left-1/4 w-96 h-96 bg-brand-500/15 rounded-full blur-[120px] pointer-events-none animate-pulse-subtle" />
+        <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            
+            {/* Left Content */}
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-amber-300 text-xs font-bold uppercase tracking-widest shadow-inner">
+                <span className="w-2 h-2 rounded-full bg-brand-500 animate-ping" />
+                <span>The Autumn / Winter Edition 2024</span>
               </div>
-              <h1 className="text-5xl lg:text-6xl font-black leading-tight mb-6">
-                Wear Your<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400">Story</span>
+
+              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black font-display tracking-tight leading-[1.08] text-white">
+                Defy Ordinary.<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200">
+                  Wear Extraordinary.
+                </span>
               </h1>
-              <p className="text-lg text-gray-300 leading-relaxed mb-8 max-w-md">
-                Premium fashion for every mood, season & style. Discover exclusive collections for Men, Women & Kids.
+
+              <p className="text-sm sm:text-base text-gray-300 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                Step into a curated realm of handcrafted fits, signature silhouettes, and everyday luxury designed to turn heads wherever you walk.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link to="/men" className="px-7 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl transition-all hover:shadow-2xl hover:shadow-brand-500/30 hover:-translate-y-0.5 text-sm">
-                  Shop Men →
+
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                <Link
+                  to="/men"
+                  className="px-8 py-4 bg-gradient-to-r from-brand-500 via-orange-500 to-amber-500 hover:from-brand-600 hover:to-orange-600 text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-2xl shadow-glow hover:shadow-glow-lg transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center gap-2"
+                >
+                  <span>Explore Men</span>
+                  <span>→</span>
                 </Link>
-                <Link to="/women" className="px-7 py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-bold rounded-2xl border border-white/20 transition-all text-sm hover:-translate-y-0.5">
-                  Shop Women →
+
+                <Link
+                  to="/women"
+                  className="px-8 py-4 bg-white/10 hover:bg-white/15 backdrop-blur-xl text-white border border-white/15 font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-2xl transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center gap-2"
+                >
+                  <span>Explore Women</span>
+                  <span>→</span>
+                </Link>
+
+                <Link
+                  to="/recent-hits"
+                  className="px-5 py-4 text-amber-300 hover:text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-colors flex items-center gap-1.5"
+                >
+                  <span>🔥 Recent Hits</span>
                 </Link>
               </div>
-              <div className="flex gap-8 mt-10 pt-8 border-t border-white/10">
-                {[['500+', 'Products'], ['10K+', 'Customers'], ['4.9★', 'Rating']].map(([val, label]) => (
-                  <div key={label}>
-                    <p className="text-2xl font-black text-white">{val}</p>
-                    <p className="text-xs text-gray-400 font-medium">{label}</p>
-                  </div>
-                ))}
+
+              {/* Trust Metrics */}
+              <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 max-w-lg mx-auto lg:mx-0">
+                <div>
+                  <p className="text-2xl sm:text-3xl font-black font-display text-white">100%</p>
+                  <p className="text-[11px] text-gray-400 uppercase tracking-wider mt-0.5">Original Fabrics</p>
+                </div>
+                <div>
+                  <p className="text-2xl sm:text-3xl font-black font-display text-white">50K+</p>
+                  <p className="text-[11px] text-gray-400 uppercase tracking-wider mt-0.5">Happy Wardrobes</p>
+                </div>
+                <div>
+                  <p className="text-2xl sm:text-3xl font-black font-display text-white">4.9★</p>
+                  <p className="text-[11px] text-gray-400 uppercase tracking-wider mt-0.5">Customer Trust</p>
+                </div>
               </div>
             </div>
-            {/* Hero Visual */}
-            <div className="hidden lg:flex items-center justify-center">
-              <div className="relative animate-float">
-                <div className="w-72 h-72 rounded-3xl bg-gradient-to-br from-brand-400/20 to-pink-400/20 backdrop-blur-sm border border-white/10 flex items-center justify-center shadow-2xl">
-                  <div className="text-center">
-                    <div className="text-8xl mb-4">👗</div>
-                    <p className="text-white font-bold text-lg">Style Awaits</p>
-                    <p className="text-gray-400 text-sm">Men • Women • Kids</p>
+
+            {/* Right Visual Floating Showcase */}
+            <div className="lg:col-span-5 relative flex justify-center">
+              <div className="relative w-full max-w-md">
+                {/* Main Card */}
+                <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border border-white/15 aspect-[4/5] bg-gray-900 group">
+                  <img
+                    src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80"
+                    alt="Haute Couture Collection"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
+                    <span className="text-[11px] font-bold text-amber-300 uppercase tracking-widest mb-1">
+                      Featured Drop
+                    </span>
+                    <h3 className="text-xl font-black text-white font-display">
+                      Monochrome Luxe Silk Edition
+                    </h3>
+                    <p className="text-xs text-gray-300 mt-1">Starting from ₹1,499</p>
                   </div>
                 </div>
-                <div className="absolute -top-4 -right-4 bg-brand-500 text-white px-3 py-2 rounded-2xl text-xs font-bold shadow-lg shadow-brand-500/40 animate-bounce">
-                  🔥 New Arrivals
+
+                {/* Floating Micro Card Left */}
+                <div className="absolute -left-6 bottom-16 z-20 bg-white/95 backdrop-blur-xl text-gray-900 p-3.5 rounded-2xl shadow-2xl border border-gray-100 flex items-center gap-3 animate-float">
+                  <div className="w-10 h-10 rounded-xl bg-orange-100 text-brand-600 flex items-center justify-center text-xl font-black shadow-inner">
+                    ⚡
+                  </div>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-wider">Fast Dispatch</p>
+                    <p className="text-[11px] text-gray-500 font-medium">Within 24 Hours</p>
+                  </div>
                 </div>
-                <div className="absolute -bottom-4 -left-4 bg-white text-gray-900 px-3 py-2 rounded-2xl text-xs font-bold shadow-xl">
-                  ₹299 onwards
+
+                {/* Floating Micro Card Right */}
+                <div className="absolute -right-4 top-10 z-20 bg-gray-900/90 backdrop-blur-xl text-white p-3.5 rounded-2xl shadow-2xl border border-white/15 flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
+                    ★
+                  </div>
+                  <div>
+                    <p className="text-xs font-black">Top Rated</p>
+                    <p className="text-[10px] text-gray-400">4.9 / 5.0 (2.4k reviews)</p>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
       {/* USP STRIP */}
-      <div className="bg-brand-500 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-10 text-sm font-semibold">
-            {['🚚 Free Delivery above ₹599', '↩️ Easy 7-Day Returns', '💳 COD Available', '✅ 100% Authentic'].map((item) => (
-              <span key={item}>{item}</span>
+      <section className="bg-white border-b border-gray-100 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {[
+              { icon: '🚚', title: 'Free Express Shipping', sub: 'On orders over ₹999' },
+              { icon: '🔄', title: '7 Days Easy Returns', sub: 'Hassle-free doorstep pickup' },
+              { icon: '💵', title: 'Cash on Delivery', sub: 'Pay easily upon arrival' },
+              { icon: '🛡️', title: '100% Certified Quality', sub: 'Direct from brand artisans' },
+            ].map(({ icon, title, sub }) => (
+              <div key={title} className="p-3 rounded-2xl hover:bg-gray-50 transition-colors">
+                <span className="text-2xl mb-1 block">{icon}</span>
+                <p className="text-xs sm:text-sm font-black text-gray-900">{title}</p>
+                <p className="text-[11px] text-gray-400 font-medium mt-0.5">{sub}</p>
+              </div>
             ))}
           </div>
         </div>
-      </div>
-
-      {/* CATEGORIES */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-black text-gray-900 mb-2">Shop by Category</h2>
-          <p className="text-gray-500">Explore our curated collections</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {categories.map(({ to, emoji, label, sub, gradient }) => (
-            <Link key={to} to={to} className="group relative rounded-3xl overflow-hidden h-64 block">
-              <div className={`absolute inset-0 bg-gradient-to-br ${gradient} group-hover:scale-105 transition-transform duration-500`} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">{emoji}</div>
-                <h3 className="text-2xl font-black">{label}</h3>
-                <p className="text-sm text-white/70 mt-1">{sub}</p>
-                <span className="mt-3 px-4 py-1.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-xs font-semibold group-hover:bg-white group-hover:text-gray-900 transition-all">
-                  Shop Now →
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
       </section>
 
-      {/* RECENT HITS */}
-      <section className="bg-white py-16">
+      {/* CATEGORIES SECTION */}
+      <section className="py-20 bg-gray-50/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
             <div>
-              <h2 className="text-3xl font-black text-gray-900">Recent Hits 🔥</h2>
-              <p className="text-gray-500 mt-1">Trending picks our customers love</p>
+              <span className="text-xs font-black text-brand-600 uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-full">
+                Curated Collections
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black font-display text-gray-900 mt-2">
+                Shop By Category
+              </h2>
             </div>
-            <Link to="/recent-hits" className="text-sm font-bold text-brand-500 hover:text-brand-600 transition-colors flex items-center gap-1">
-              View All
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </Link>
+            <p className="text-xs sm:text-sm text-gray-500 max-w-xs">
+              Hand-picked designs tailored for comfort, style and everyday sophistication.
+            </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
-            {loading
-              ? Array(8).fill(0).map((_, i) => <SkeletonCard key={i} />)
-              : featured.length > 0
-                ? featured.map((p) => <ProductCard key={p._id} product={p} />)
-                : <div className="col-span-full text-center py-20"><div className="text-6xl mb-4">👗</div><p className="text-gray-500">Featured products coming soon!</p></div>
-            }
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {categories.map((cat) => (
+              <Link
+                key={cat.label}
+                to={cat.to}
+                className="group relative rounded-3xl overflow-hidden shadow-luxe hover:shadow-2xl transition-all duration-500 aspect-[4/5] bg-gray-900 flex flex-col justify-end p-8"
+              >
+                {/* Image */}
+                <img
+                  src={cat.image}
+                  alt={cat.label}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                {/* Gradient Shadow */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent transition-opacity group-hover:opacity-90" />
+
+                <div className="relative z-10 text-white space-y-2">
+                  <span className="inline-block text-[10px] font-black uppercase tracking-widest bg-brand-500 text-white px-2.5 py-1 rounded-full shadow-md">
+                    {cat.badge}
+                  </span>
+                  <h3 className="text-3xl font-black font-display group-hover:text-amber-300 transition-colors">
+                    {cat.label}
+                  </h3>
+                  <p className="text-xs text-gray-300 font-medium">
+                    {cat.tagline}
+                  </p>
+                  <p className="text-[11px] text-gray-400">
+                    {cat.count}
+                  </p>
+
+                  <div className="pt-2 flex items-center gap-2 text-xs font-bold text-amber-300 group-hover:translate-x-1 transition-transform">
+                    <span>Shop Collection</span>
+                    <span>→</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* WHY US */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-black text-center text-gray-900 mb-12">Why Like N Like?</h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { emoji: '🏆', title: 'Premium Quality', sub: 'Handpicked fabrics, superior stitching', color: 'bg-blue-50 hover:bg-blue-100' },
-            { emoji: '💰', title: 'Best Prices', sub: 'Factory-direct pricing, no middlemen', color: 'bg-orange-50 hover:bg-orange-100' },
-            { emoji: '🚀', title: 'Fast Delivery', sub: '2-5 day delivery pan India', color: 'bg-green-50 hover:bg-green-100' },
-            { emoji: '🔄', title: 'Easy Returns', sub: 'No-hassle 7-day return policy', color: 'bg-purple-50 hover:bg-purple-100' },
-          ].map(({ emoji, title, sub, color }) => (
-            <div key={title} className={`text-center p-6 rounded-2xl ${color} transition-colors`}>
-              <div className="text-4xl mb-3">{emoji}</div>
-              <h3 className="font-bold text-gray-900 mb-1">{title}</h3>
-              <p className="text-sm text-gray-500">{sub}</p>
+      {/* FEATURED PRODUCTS */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <span className="text-xs font-black text-brand-600 uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-full">
+                Trending Right Now
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black font-display text-gray-900 mt-2">
+                Featured Highlights
+              </h2>
             </div>
-          ))}
+            <Link to="/recent-hits" className="text-xs sm:text-sm font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 group">
+              <span>View All</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
+
+          {loading ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+              {[...Array(4)].map((_, i) => <SkeletonCard key={i} />)}
+            </div>
+          ) : featured.length === 0 ? (
+            <div className="text-center py-16 bg-gray-50 rounded-3xl">
+              <span className="text-4xl block mb-2">👕</span>
+              <p className="text-gray-500 font-medium">No featured products found yet.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+              {featured.map((p) => (
+                <ProductCard key={p._id} product={p} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
-    </main>
+
+      {/* BRAND PROMISE BANNER */}
+      <section className="py-16 bg-gradient-to-r from-gray-950 via-zinc-900 to-gray-950 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+          <span className="text-xs font-black uppercase tracking-widest text-amber-300 bg-white/10 px-4 py-1.5 rounded-full inline-block">
+            The Like N Like Guarantee
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-black font-display">
+            Fashion That Elevates Your Confidence.
+          </h2>
+          <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto font-normal leading-relaxed">
+            Every garment is tailored with perfectionist stitching, premium breathable cotton blends, and durable dyes engineered to sustain wash after wash.
+          </p>
+          <div className="pt-2">
+            <Link
+              to="/recent-hits"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-500 to-amber-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-2xl shadow-glow hover:shadow-glow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+            >
+              Discover New Arrivals →
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
