@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 import mainLogo from '../assets/main-logo.png';
 
 export default function Navbar() {
   const { user, logout, isAdmin } = useAuth();
+  const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -63,77 +67,127 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop Auth */}
-          <div className="hidden md:flex items-center gap-2">
-            {user ? (
-              <div className="flex items-center gap-3">
-                {isAdmin && (
-                  <Link to="/admin" className="text-xs font-semibold px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200 transition-colors">
-                    ⚙️ Admin
-                  </Link>
-                )}
-                <div className="relative">
-                  <button
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-brand-500 transition-colors"
-                  >
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
-                      {user.name.charAt(0).toUpperCase()}
-                    </div>
-                    <span className="hidden lg:inline">{user.name.split(' ')[0]}</span>
-                    <svg className={`w-3.5 h-3.5 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
+          {/* Actions: Wishlist, Cart & Auth */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Wishlist Link */}
+            <Link
+              to="/wishlist"
+              className="relative p-2 text-gray-700 hover:text-brand-500 hover:bg-orange-50 rounded-full transition-colors"
+              title="Wishlist"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              {wishlistCount > 0 && (
+                <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center animate-pulse">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
 
-                  {dropdownOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50">
-                      <div className="px-4 py-2 border-b border-gray-50">
-                        <p className="text-xs font-bold text-gray-900 truncate">{user.name}</p>
-                        <p className="text-xs text-gray-400 truncate">{user.email}</p>
-                      </div>
-                      <button className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-500 transition-colors text-left">
-                        📦 My Orders
-                      </button>
-                      <button className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-500 transition-colors text-left">
-                        ❤️ Wishlist
-                      </button>
-                      <div className="border-t border-gray-50 mt-1 pt-1">
-                        <button
-                          onClick={handleLogout}
-                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition-colors text-left"
-                        >
-                          🚪 Logout
-                        </button>
-                      </div>
-                    </div>
+            {/* Cart Link */}
+            <Link
+              to="/cart"
+              className="relative p-2 text-gray-700 hover:text-brand-500 hover:bg-orange-50 rounded-full transition-colors"
+              title="Bag"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              {cartCount > 0 && (
+                <span className="absolute top-0 right-0 w-4 h-4 bg-brand-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center animate-pulse">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+
+            {/* Desktop Auth */}
+            <div className="hidden md:flex items-center gap-2">
+              {user ? (
+                <div className="flex items-center gap-3">
+                  {isAdmin && (
+                    <Link to="/admin" className="text-xs font-semibold px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200 transition-colors">
+                      ⚙️ Admin
+                    </Link>
                   )}
-                </div>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Link to="/login" className="text-sm font-semibold text-gray-700 hover:text-brand-500 transition-colors px-3 py-1.5">
-                  Login
-                </Link>
-                <Link to="/register" className="text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 px-4 py-2 rounded-full transition-all shadow-sm hover:shadow-md">
-                  Register
-                </Link>
-              </div>
-            )}
-          </div>
+                  <div className="relative">
+                    <button
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                      className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-brand-500 transition-colors"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                        {user.name.charAt(0).toUpperCase()}
+                      </div>
+                      <span className="hidden lg:inline">{user.name.split(' ')[0]}</span>
+                      <svg className={`w-3.5 h-3.5 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
 
-          {/* Mobile Hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
-          >
-            <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileOpen
-                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              }
-            </svg>
-          </button>
+                    {dropdownOpen && (
+                      <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50">
+                        <div className="px-4 py-2 border-b border-gray-50">
+                          <p className="text-xs font-bold text-gray-900 truncate">{user.name}</p>
+                          <p className="text-xs text-gray-400 truncate">{user.email}</p>
+                        </div>
+                        <Link
+                          to="/my-orders"
+                          onClick={() => setDropdownOpen(false)}
+                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-500 transition-colors"
+                        >
+                          📦 My Orders
+                        </Link>
+                        <Link
+                          to="/wishlist"
+                          onClick={() => setDropdownOpen(false)}
+                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-500 transition-colors"
+                        >
+                          ❤️ Wishlist ({wishlistCount})
+                        </Link>
+                        <Link
+                          to="/cart"
+                          onClick={() => setDropdownOpen(false)}
+                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-500 transition-colors"
+                        >
+                          🛍️ My Bag ({cartCount})
+                        </Link>
+                        <div className="border-t border-gray-50 mt-1 pt-1">
+                          <button
+                            onClick={handleLogout}
+                            className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition-colors text-left"
+                          >
+                            🚪 Logout
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Link to="/login" className="text-sm font-semibold text-gray-700 hover:text-brand-500 transition-colors px-3 py-1.5">
+                    Login
+                  </Link>
+                  <Link to="/register" className="text-sm font-semibold text-white bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 px-4 py-2 rounded-full transition-all shadow-sm hover:shadow-md">
+                    Register
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Hamburger */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors ml-1"
+            >
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileOpen
+                  ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                }
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -156,10 +210,19 @@ export default function Navbar() {
               {user ? (
                 <>
                   <p className="text-xs text-gray-400 mb-2">{user.name} ({user.role})</p>
+                  <Link to="/my-orders" onClick={() => setMobileOpen(false)} className="block py-2 text-sm font-medium text-gray-700 hover:text-brand-500">
+                    📦 My Orders
+                  </Link>
+                  <Link to="/wishlist" onClick={() => setMobileOpen(false)} className="block py-2 text-sm font-medium text-gray-700 hover:text-brand-500">
+                    ❤️ Wishlist ({wishlistCount})
+                  </Link>
+                  <Link to="/cart" onClick={() => setMobileOpen(false)} className="block py-2 text-sm font-medium text-gray-700 hover:text-brand-500">
+                    🛍️ My Bag ({cartCount})
+                  </Link>
                   {isAdmin && (
                     <Link to="/admin" onClick={() => setMobileOpen(false)} className="block py-2 text-sm font-medium text-purple-600">⚙️ Admin Panel</Link>
                   )}
-                  <button onClick={handleLogout} className="block py-2 text-sm font-medium text-red-500">🚪 Logout</button>
+                  <button onClick={handleLogout} className="block py-2 text-sm font-medium text-red-500 text-left w-full">🚪 Logout</button>
                 </>
               ) : (
                 <div className="flex gap-3">
