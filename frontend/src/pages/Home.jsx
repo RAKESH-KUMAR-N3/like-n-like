@@ -60,118 +60,269 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-br from-gray-950 via-[#10121a] to-[#0a0a0f] text-white pt-16 pb-24 lg:py-28 overflow-hidden">
-        {/* Ambient Glowing Orbs */}
-        <div className="absolute top-10 left-1/4 w-96 h-96 bg-brand-500/15 rounded-full blur-[120px] pointer-events-none animate-pulse-subtle" />
-        <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
+      <section className="relative bg-[#FAF7F2] overflow-hidden pt-8 pb-12 lg:pt-12 lg:pb-16 border-b border-amber-100/60">
+        
+        {/* Subtle World Map Watermark in Background */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.04] overflow-hidden">
+          <svg className="w-full h-full object-cover" viewBox="0 0 1000 500" fill="currentColor">
+            <path d="M150,120 Q180,90 220,110 T280,160 T250,220 T180,240 T130,190 Z M450,100 Q500,70 560,90 T640,140 T670,220 T610,280 T520,290 T440,240 T420,160 Z M700,150 Q750,130 820,160 T870,230 T800,300 T720,280 T680,220 Z M200,320 Q240,300 270,330 T280,400 T230,460 T170,440 T160,370 Z M750,340 Q800,320 840,350 T860,420 T810,470 T740,450 Z" />
+          </svg>
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            
-            {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-amber-300 text-xs font-bold uppercase tracking-widest shadow-inner">
-                <span className="w-2 h-2 rounded-full bg-brand-500 animate-ping" />
-                <span>The Autumn / Winter Edition 2024</span>
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-4 items-center">
+
+            {/* LEFT COLUMN: BRAND STORY & CTAs */}
+            <div className="lg:col-span-6 space-y-6 pt-2 sm:pt-4 text-left">
+              
+              {/* Tagline */}
+              <div className="flex items-center gap-3 text-[11px] sm:text-xs font-bold tracking-[0.25em] text-gray-500 uppercase">
+                <span className="w-8 h-[2px] bg-gray-400/80"></span>
+                <span>FASHION FOR EVERY YOU</span>
+                <span className="w-8 h-[2px] bg-gray-400/80"></span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black font-display tracking-tight leading-[1.08] text-white">
-                Defy Ordinary.<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200">
-                  Wear Extraordinary.
-                </span>
-              </h1>
+              {/* Main Headline Stack */}
+              <div className="space-y-1 sm:space-y-2 select-none">
+                
+                {/* 1. UNIQUE + Golden Crown */}
+                <div className="relative inline-flex items-center">
+                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black font-display tracking-tight text-gray-950 uppercase leading-none">
+                    UNIQUE
+                  </h1>
+                  {/* Golden Crown Doodle */}
+                  <span className="absolute -top-5 -right-8 sm:-top-7 sm:-right-10 transform rotate-12">
+                    <svg className="w-9 h-9 sm:w-11 sm:h-11 text-[#F5B82E] drop-shadow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z" fill="#F5B82E" fillOpacity="0.25" />
+                      <circle cx="2" cy="4" r="1.5" fill="#F5B82E" />
+                      <circle cx="12" cy="3" r="1.5" fill="#F5B82E" />
+                      <circle cx="22" cy="4" r="1.5" fill="#F5B82E" />
+                    </svg>
+                  </span>
+                </div>
 
-              <p className="text-sm sm:text-base text-gray-300 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                Step into a curated realm of handcrafted fits, signature silhouettes, and everyday luxury designed to turn heads wherever you walk.
+                {/* 2. COLLECTIONS inside Red Paint-Brush Stroke Banner */}
+                <div className="block">
+                  <div className="relative inline-block my-1">
+                    <svg 
+                      className="absolute inset-0 w-[106%] -left-[3%] h-full -z-10" 
+                      viewBox="0 0 540 100" 
+                      preserveAspectRatio="none"
+                    >
+                      <path 
+                        d="M 15 20 C 45 14, 120 16, 220 13 C 320 11, 440 14, 520 18 C 536 19, 542 26, 538 40 C 543 54, 534 70, 539 82 C 536 90, 515 88, 480 86 C 390 90, 260 86, 140 89 C 70 90, 25 86, 12 83 C 4 80, -3 68, 3 48 C -2 34, 4 24, 15 20 Z" 
+                        fill="#D91E2B" 
+                      />
+                      {/* Painterly brush notches */}
+                      <path d="M 525 28 C 538 33, 542 43, 534 50 Z" fill="#D91E2B" opacity="0.9" />
+                      <path d="M 8 34 C -2 42, 0 54, 8 62 Z" fill="#D91E2B" opacity="0.85" />
+                    </svg>
+                    <span className="relative z-10 px-5 sm:px-9 py-1 sm:py-2 block text-white font-black text-3xl sm:text-5xl lg:text-6xl tracking-wider uppercase font-display drop-shadow-md">
+                      COLLECTIONS
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3. AFFORDABLE PRICES (with yellow highlighter) */}
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-gray-950 uppercase leading-tight pt-1">
+                  <span>AFFORDABLE</span>
+                  <span className="relative inline-block px-2.5 sm:px-3 py-0.5">
+                    <span className="absolute inset-0 bg-[#FFD23F] -rotate-1 rounded-md -z-10 shadow-sm" />
+                    <span className="text-gray-950">PRICES</span>
+                  </span>
+                  {/* Subtle flight path icon */}
+                  <span className="hidden sm:inline-block relative">
+                    <svg className="w-14 h-7 -rotate-6 text-gray-500" viewBox="0 0 100 40" fill="none">
+                      <path d="M 5 35 Q 50 -10 95 20" stroke="currentColor" strokeWidth="2.5" strokeDasharray="5 5" />
+                    </svg>
+                  </span>
+                </div>
+
+                {/* 4. WORLDWIDE SHIPPING + Green Globe */}
+                <div className="flex items-center gap-2.5 sm:gap-3 text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight leading-tight">
+                  <span className="text-[#137547]">WORLDWIDE</span>
+                  <span className="text-gray-950">SHIPPING</span>
+                  {/* Green Globe Doodle Icon */}
+                  <div className="relative inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-[#137547] text-[#137547] p-1">
+                    <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Explanatory Paragraph */}
+              <p className="text-sm sm:text-base text-gray-600 max-w-lg font-medium leading-relaxed">
+                Explore trendy and unique fashion for Men, Women and Kids at affordable prices. Your favourite styles, delivered anywhere in the world.
               </p>
 
-              {/* Action Buttons */}
-              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+              {/* 3 Call to Action Buttons */}
+              <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
                 <Link
                   to="/men"
-                  className="px-8 py-4 bg-gradient-to-r from-brand-500 via-orange-500 to-amber-500 hover:from-brand-600 hover:to-orange-600 text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-2xl shadow-glow hover:shadow-glow-lg transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center gap-2"
+                  className="px-6 py-3.5 bg-[#D91E2B] hover:bg-[#B81822] text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center gap-2"
                 >
-                  <span>Explore Men</span>
+                  <span>Shop Men</span>
                   <span>→</span>
                 </Link>
 
                 <Link
                   to="/women"
-                  className="px-8 py-4 bg-white/10 hover:bg-white/15 backdrop-blur-xl text-white border border-white/15 font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-2xl transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center gap-2"
+                  className="px-6 py-3.5 bg-white hover:bg-gray-50 text-gray-900 border border-gray-300 hover:border-gray-900 font-extrabold text-xs sm:text-sm rounded-xl shadow-sm hover:shadow transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center gap-2"
                 >
-                  <span>Explore Women</span>
+                  <span>Shop Women</span>
                   <span>→</span>
                 </Link>
 
                 <Link
-                  to="/recent-hits"
-                  className="px-5 py-4 text-amber-300 hover:text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-colors flex items-center gap-1.5"
+                  to="/kids"
+                  className="px-6 py-3.5 bg-[#18191F] hover:bg-black text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center gap-2"
                 >
-                  <span>🔥 Recent Hits</span>
+                  <span>Shop Kids</span>
+                  <span>→</span>
                 </Link>
               </div>
 
-              {/* Trust Metrics */}
-              <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 max-w-lg mx-auto lg:mx-0">
-                <div>
-                  <p className="text-2xl sm:text-3xl font-black font-display text-white">100%</p>
-                  <p className="text-[11px] text-gray-400 uppercase tracking-wider mt-0.5">Original Fabrics</p>
-                </div>
-                <div>
-                  <p className="text-2xl sm:text-3xl font-black font-display text-white">50K+</p>
-                  <p className="text-[11px] text-gray-400 uppercase tracking-wider mt-0.5">Happy Wardrobes</p>
-                </div>
-                <div>
-                  <p className="text-2xl sm:text-3xl font-black font-display text-white">4.9★</p>
-                  <p className="text-[11px] text-gray-400 uppercase tracking-wider mt-0.5">Customer Trust</p>
+              {/* BOTTOM-LEFT CURVED QUICK CATEGORY DOCK */}
+              <div className="pt-4 lg:pt-6">
+                <div className="inline-flex items-center gap-5 sm:gap-8 bg-white/95 backdrop-blur-md px-5 sm:px-6 py-3 rounded-2xl sm:rounded-3xl border border-gray-200/90 shadow-md hover:shadow-lg transition-shadow">
+                  
+                  {/* Men Avatar Item */}
+                  <Link to="/men" className="flex items-center gap-3 group">
+                    <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200 group-hover:border-[#D91E2B] transition-colors shrink-0 bg-gray-100">
+                      <img
+                        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=160&q=80"
+                        alt="Men Fashion"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-[#D91E2B] transition-colors leading-tight">Men</p>
+                      <span className="text-[11px] text-gray-400 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                    </div>
+                  </Link>
+
+                  <div className="w-[1px] h-9 bg-gray-200" />
+
+                  {/* Women Avatar Item */}
+                  <Link to="/women" className="flex items-center gap-3 group">
+                    <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200 group-hover:border-pink-500 transition-colors shrink-0 bg-gray-100">
+                      <img
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&q=80"
+                        alt="Women Fashion"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-pink-600 transition-colors leading-tight">Women</p>
+                      <span className="text-[11px] text-gray-400 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                    </div>
+                  </Link>
+
+                  <div className="w-[1px] h-9 bg-gray-200" />
+
+                  {/* Kids Avatar Item */}
+                  <Link to="/kids" className="flex items-center gap-3 group">
+                    <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200 group-hover:border-amber-500 transition-colors shrink-0 bg-gray-100">
+                      <img
+                        src="https://images.unsplash.com/photo-1543332164-6e82f355badc?w=160&q=80"
+                        alt="Kids Fashion"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-amber-600 transition-colors leading-tight">Kids</p>
+                      <span className="text-[11px] text-gray-400 group-hover:translate-x-1 inline-block transition-transform">→</span>
+                    </div>
+                  </Link>
+
                 </div>
               </div>
+
             </div>
 
-            {/* Right Visual Floating Showcase */}
-            <div className="lg:col-span-5 relative flex justify-center">
-              <div className="relative w-full max-w-md">
-                {/* Main Card */}
-                <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border border-white/15 aspect-[4/5] bg-gray-900 group">
-                  <img
-                    src={heroImage}
-                    alt="Haute Couture Collection"
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-                    <span className="text-[11px] font-bold text-amber-300 uppercase tracking-widest mb-1">
-                      Featured Drop
-                    </span>
-                    <h3 className="text-xl font-black text-white font-display">
-                      Monochrome Luxe Silk Edition
-                    </h3>
-                    <p className="text-xs text-gray-300 mt-1">Starting from ₹1,499</p>
-                  </div>
-                </div>
+            {/* RIGHT COLUMN: MAIN MODELS & GRAPHIC BACKDROPS */}
+            <div className="lg:col-span-6 relative flex items-end justify-center pt-6 lg:pt-0 min-h-[460px] sm:min-h-[540px] lg:min-h-[620px]">
+              
+              {/* Yellow Sun Circle Backdrop behind man */}
+              <div 
+                className="absolute left-[2%] sm:left-[6%] top-[12%] sm:top-[8%] w-[260px] sm:w-[360px] lg:w-[410px] h-[260px] sm:h-[360px] lg:h-[410px] rounded-full bg-[#F5B82E] -z-0 pointer-events-none shadow-sm"
+              />
 
-                {/* Floating Micro Card Left */}
-                <div className="absolute -left-6 bottom-16 z-20 bg-white/95 backdrop-blur-xl text-gray-900 p-3.5 rounded-2xl shadow-2xl border border-gray-100 flex items-center gap-3 animate-float">
-                  <div className="w-10 h-10 rounded-xl bg-orange-100 text-brand-600 flex items-center justify-center text-xl font-black shadow-inner">
-                    ⚡
-                  </div>
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-wider">Fast Dispatch</p>
-                    <p className="text-[11px] text-gray-500 font-medium">Within 24 Hours</p>
-                  </div>
-                </div>
+              {/* Dark Forest Green Arch behind woman */}
+              <div 
+                className="absolute right-[8%] sm:right-[14%] top-[24%] sm:top-[18%] w-[200px] sm:w-[260px] lg:w-[300px] h-[300px] sm:h-[380px] lg:h-[430px] rounded-t-full bg-[#1C744C] -z-0 pointer-events-none shadow-sm"
+              />
 
-                {/* Floating Micro Card Right */}
-                <div className="absolute -right-4 top-10 z-20 bg-gray-900/90 backdrop-blur-xl text-white p-3.5 rounded-2xl shadow-2xl border border-white/15 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
-                    ★
-                  </div>
-                  <div>
-                    <p className="text-xs font-black">Top Rated</p>
-                    <p className="text-[10px] text-gray-400">4.9 / 5.0 (2.4k reviews)</p>
+              {/* Worldwide Shipping Script & Airplane Dotted Flight Loop */}
+              <div className="absolute top-2 right-4 sm:top-4 sm:right-16 z-20 select-none pointer-events-none text-right">
+                <div className="inline-flex items-center gap-1.5 font-bold text-gray-800 text-sm sm:text-base italic">
+                  <span style={{ fontFamily: 'Georgia, serif' }}>Worldwide Shipping</span>
+                  <span className="text-base sm:text-lg">✈️</span>
+                </div>
+                {/* Dotted arc flight line */}
+                <svg className="w-36 sm:w-48 h-10 ml-auto text-gray-600" viewBox="0 0 160 40" fill="none">
+                  <path d="M 10 35 Q 70 -5 150 20" stroke="currentColor" strokeWidth="1.8" strokeDasharray="4 4" />
+                </svg>
+              </div>
+
+              {/* Main Model Cutout Image */}
+              <div className="relative z-10 w-full max-w-[540px] lg:max-w-[620px]">
+                <img
+                  src={heroImage}
+                  alt="Like N Like - Men, Women and Kids Fashion"
+                  className="w-full h-auto object-contain filter drop-shadow-[0_20px_25px_rgba(0,0,0,0.15)]"
+                />
+              </div>
+
+              {/* Floating Badge 1: Unique Collections */}
+              <div className="absolute right-0 sm:-right-4 top-24 sm:top-36 z-20 bg-[#FFF5EE]/95 backdrop-blur-md border border-[#FED7C3] rounded-2xl p-2.5 sm:p-3.5 shadow-xl flex items-center gap-3 animate-float max-w-[190px] sm:max-w-[220px]">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#E62935] text-white flex items-center justify-center shrink-0 shadow-md">
+                  {/* T-Shirt SVG */}
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16 2l4 4-2 3-2-1v14H8V8L6 9 4 6l4-4h2a2 2 0 004 0h2z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs sm:text-sm font-extrabold text-gray-900 leading-tight">Unique Collections</p>
+                  <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium leading-tight mt-0.5">Styles You Won't Find Everywhere</p>
+                </div>
+              </div>
+
+              {/* Floating Badge 2: Affordable Prices */}
+              <div className="absolute right-1 sm:-right-2 top-52 sm:top-68 z-20 bg-[#EEFAF2]/95 backdrop-blur-md border border-[#C8EED5] rounded-2xl p-2.5 sm:p-3.5 shadow-xl flex items-center gap-3 max-w-[190px] sm:max-w-[220px]">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#188046] text-white flex items-center justify-center shrink-0 shadow-md">
+                  {/* Price Tag SVG */}
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.586 2.586A2 2 0 0011.172 2H4a2 2 0 00-2 2v7.172a2 2 0 00.586 1.414l8 8a2 2 0 002.828 0l7.172-7.172a2 2 0 000-2.828l-8-8zM7 9a2 2 0 110-4 2 2 0 010 4z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs sm:text-sm font-extrabold text-gray-900 leading-tight">Affordable Prices</p>
+                  <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium leading-tight mt-0.5">Trendy Fashion For Everyone</p>
+                </div>
+              </div>
+
+              {/* Vintage Postal Rubber Stamp Badge (Bottom Right) */}
+              <div className="absolute right-4 sm:right-6 bottom-8 sm:bottom-10 z-20 select-none pointer-events-none opacity-80">
+                <div className="w-18 h-18 sm:w-22 sm:h-22 rounded-full border-2 border-dashed border-gray-400 p-1 flex items-center justify-center -rotate-12">
+                  <div className="w-full h-full rounded-full border border-gray-400 flex flex-col items-center justify-center text-center p-1">
+                    <span className="text-[7px] sm:text-[8px] font-black uppercase tracking-wider text-gray-500">FASHION AROUND</span>
+                    <span className="text-xs my-0.5">🌐</span>
+                    <span className="text-[7px] sm:text-[8px] font-black uppercase tracking-wider text-gray-500">THE WORLD</span>
                   </div>
                 </div>
               </div>
+
+              {/* Carousel Indicators < 01/03 > (Bottom Right) */}
+              <div className="absolute right-4 sm:right-6 bottom-1 sm:bottom-2 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-gray-200 text-xs font-bold text-gray-700 shadow-sm">
+                <button className="hover:text-[#D91E2B] transition-colors">‹</button>
+                <span className="text-[11px] font-extrabold tracking-widest text-gray-500">01 / 03</span>
+                <button className="hover:text-[#D91E2B] transition-colors">›</button>
+              </div>
+
             </div>
 
           </div>

@@ -74,11 +74,12 @@ export default function Navbar() {
     { to: '/men', label: 'Men' },
     { to: '/women', label: 'Women' },
     { to: '/kids', label: 'Kids' },
-    { to: '/recent-hits', label: 'Recent Hits 🔥' },
+    { to: '/recent-hits', label: 'New In' },
+    { to: '/policies', label: 'Collections' },
   ];
 
-  const activeCls = 'text-brand-600 font-bold after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-[2px] after:bg-gradient-to-r after:from-brand-500 after:to-orange-500 after:rounded-full';
-  const inactiveCls = 'text-gray-700 hover:text-brand-600 font-semibold';
+  const activeCls = 'text-brand-600 font-bold after:absolute after:bottom-[-2px] after:left-0 after:right-0 after:h-[2px] after:bg-[#D91E2B] after:rounded-full';
+  const inactiveCls = 'text-gray-700 hover:text-[#D91E2B] font-semibold';
 
   return (
     <header className="sticky top-0 z-50">
@@ -99,7 +100,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Navbar */}
-      <nav className={`bg-white/85 backdrop-blur-xl border-b border-gray-100/90 transition-all duration-300 ${scrolled ? 'shadow-md shadow-gray-200/50 py-0.5' : ''}`}>
+      <nav className={`bg-white/95 backdrop-blur-xl border-b border-gray-100 transition-all duration-300 ${scrolled ? 'shadow-md shadow-gray-200/50 py-0.5' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-18">
 
@@ -136,8 +137,8 @@ export default function Navbar() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={() => { if (searchResults.length > 0) setShowSearchDropdown(true); }}
-                  placeholder="Search shirts, dresses..."
-                  className="w-full pl-9 pr-4 py-2 bg-gray-100/90 hover:bg-gray-100 focus:bg-white border border-transparent focus:border-brand-500 rounded-full text-xs transition-all focus:outline-none"
+                  placeholder="Search for products..."
+                  className="w-full pl-9 pr-4 py-2 bg-gray-100/90 hover:bg-gray-100 focus:bg-white border border-transparent focus:border-[#D91E2B] rounded-full text-xs transition-all focus:outline-none"
                 />
                 <svg className="w-4 h-4 text-gray-400 absolute left-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
