@@ -124,10 +124,18 @@ export default function Login() {
             </p>
 
             {/* Demo Credentials */}
-            <div className="mt-5 p-4 bg-blue-50 rounded-xl border border-blue-100">
-              <p className="text-xs font-bold text-blue-700 mb-1.5">🧪 Demo Credentials</p>
-              <p className="text-xs text-blue-600"><strong>Admin:</strong> admin@likenlike.com / Admin@123</p>
-              <p className="text-xs text-blue-600"><strong>User:</strong> user@likenlike.com / User@123</p>
+            <div className="mt-5 p-4 bg-amber-50 rounded-xl border border-amber-200/80">
+              <p className="text-xs font-bold text-amber-800 mb-1.5 flex items-center gap-1.5">
+                <span>🔐</span> Admin Login Credentials:
+              </p>
+              <button
+                type="button"
+                onClick={() => setForm({ email: 'admin123@gmail.com', password: '123123' })}
+                className="w-full text-left text-xs text-amber-900 bg-white/80 hover:bg-white p-2 rounded-lg border border-amber-200 transition-colors flex items-center justify-between group"
+              >
+                <span><strong>Admin:</strong> admin123@gmail.com / 123123</span>
+                <span className="text-[10px] text-amber-600 font-bold group-hover:underline">Click to Fill ⚡</span>
+              </button>
             </div>
           </div>
         </div>

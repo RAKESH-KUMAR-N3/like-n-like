@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,11 +10,12 @@
   }
   body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    @apply bg-[#fafafc] text-gray-900 antialiased;
-    letter-spacing: -0.015em;
+    @apply bg-[#F7F4EF] text-gray-900 antialiased;
+    letter-spacing: -0.01em;
   }
-  h1, h2, h3, h4, .font-display {
+  h1, h2, h3, h4, h5, .font-display {
     font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
   }
   html {
     scroll-behavior: smooth;
@@ -22,59 +23,79 @@
 }
 
 @layer components {
-  /* Premium Buttons */
-  .btn-luxe {
-    @apply relative overflow-hidden px-6 py-3.5 bg-gradient-to-r from-gray-950 via-gray-900 to-gray-800 text-white font-bold rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5 active:scale-95 text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2;
-  }
-  
+  /* Primary CTA — Red */
   .btn-primary {
-    @apply relative overflow-hidden px-6 py-3.5 bg-gradient-to-r from-brand-500 via-orange-500 to-amber-500 text-white font-extrabold rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/35 hover:-translate-y-0.5 active:scale-95 text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2;
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#D91E2B] hover:bg-[#B81822] text-white font-extrabold text-sm uppercase tracking-widest rounded-none transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-md hover:shadow-lg;
   }
 
+  /* Outline button */
   .btn-outline {
-    @apply px-6 py-3.5 border-2 border-gray-200 hover:border-gray-900 text-gray-800 font-bold rounded-2xl hover:bg-gray-900 hover:text-white transition-all duration-200 text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 border-2 border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white font-extrabold text-sm uppercase tracking-widest rounded-none transition-all duration-200 hover:-translate-y-0.5 active:scale-95;
   }
 
-  .card-luxe {
-    @apply bg-white rounded-3xl shadow-luxe hover:shadow-luxe-hover transition-all duration-300 border border-gray-100/80;
+  /* White ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-[#1A1A1A] hover:bg-[#F7F4EF] font-extrabold text-sm uppercase tracking-widest rounded-none transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-sm hover:shadow;
   }
 
-  .input-field {
-    @apply w-full px-4 py-3.5 border border-gray-200/90 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all bg-gray-50/50 focus:bg-white;
+  /* Section heading */
+  .section-label {
+    @apply text-[10px] font-black uppercase tracking-[0.3em] text-gray-400;
   }
 
-  .label {
-    @apply block text-xs font-bold text-gray-700 mb-1.5 uppercase tracking-wider;
-  }
-
-  .glass-card {
-    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-sm rounded-3xl;
-  }
-
-  .glass-dark {
-    @apply bg-gray-950/80 backdrop-blur-2xl border border-white/10 text-white shadow-2xl;
-  }
-
-  /* Shimmer effect for skeleton loading */
+  /* Skeleton shimmer */
   .skeleton-shimmer {
-    background: linear-gradient(90deg, #f0f0f3 0%, #e2e2e8 50%, #f0f0f3 100%);
+    background: linear-gradient(90deg, #ede9e2 0%, #ddd8cf 50%, #ede9e2 100%);
     background-size: 200% 100%;
     animation: shimmer 1.8s infinite linear;
   }
+
+  /* Product card */
+  .product-card {
+    @apply bg-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  /* Divider line */
+  .divider {
+    @apply w-12 h-[2px] bg-[#D91E2B];
+  }
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Float animation for badges */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+.animate-float-delay {
+  animation: float 3.5s ease-in-out 0.8s infinite;
+}
+
+/* Fade + slide-up on scroll reveal */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeSlideUp 0.65s ease-out both;
+}
+.animate-fade-up-2 {
+  animation: fadeSlideUp 0.65s ease-out 0.15s both;
+}
+.animate-fade-up-3 {
+  animation: fadeSlideUp 0.65s ease-out 0.3s both;
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f4;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: #f1ede7; }
+::-webkit-scrollbar-thumb  { background: #c9b99e; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #a89078; }
