@@ -64,13 +64,20 @@ export default function Footer() {
 
           {/* Help */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Help</h4>
-            <ul className="space-y-2.5">
-              {['Size Guide', 'Shipping Info', 'Returns & Exchanges', 'Track Your Order', 'Contact Us'].map((item) => (
-                <li key={item}>
-                  <button className="text-gray-400 hover:text-brand-400 text-sm transition-colors text-left">{item}</button>
-                </li>
-              ))}
+            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Help & Support</h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link to="/policies" className="text-gray-400 hover:text-brand-400 transition-colors">Returns & Exchanges</Link>
+              </li>
+              <li>
+                <Link to="/policies" className="text-gray-400 hover:text-brand-400 transition-colors">Shipping Information</Link>
+              </li>
+              <li>
+                <Link to="/my-orders" className="text-gray-400 hover:text-brand-400 transition-colors">Track Your Order</Link>
+              </li>
+              <li>
+                <Link to="/policies" className="text-gray-400 hover:text-brand-400 transition-colors">Contact Support</Link>
+              </li>
             </ul>
           </div>
 

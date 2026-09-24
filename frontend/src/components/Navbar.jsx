@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
+import API from '../utils/api';
 import mainLogo from '../assets/main-logo.png';
 
 export default function Navbar() {
@@ -14,10 +15,52 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  // Live Search State
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [showSearchDropdown, setShowSearchDropdown] = useState(false);
+  const searchRef = useRef(null);
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Debounced live search
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      setShowSearchDropdown(false);
+      return;
+    }
+    const timer = setTimeout(async () => {
+      try {
+        setSearchLoading(true);
+        const res = await API.get(`/products?search=${encodeURIComponent(searchQuery.trim())}&limit=5`);
+        if (res.data.success) {
+          setSearchResults(res.data.data || []);
+          setShowSearchDropdown(true);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setSearchLoading(false);
+      }
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  // Click outside listener for search
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setShowSearchDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const handleLogout = () => {
@@ -83,6 +126,53 @@ export default function Navbar() {
                   {label}
                 </NavLink>
               ))}
+            </div>
+
+            {/* Live Search Bar (Desktop) */}
+            <div ref={searchRef} className="hidden lg:block relative w-56 xl:w-72">
+              <div className="relative flex items-center">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => { if (searchResults.length > 0) setShowSearchDropdown(true); }}
+                  placeholder="Search shirts, dresses..."
+                  className="w-full pl-9 pr-4 py-2 bg-gray-100/90 hover:bg-gray-100 focus:bg-white border border-transparent focus:border-brand-500 rounded-full text-xs transition-all focus:outline-none"
+                />
+                <svg className="w-4 h-4 text-gray-400 absolute left-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                {searchLoading && (
+                  <div className="w-3.5 h-3.5 border-2 border-brand-500 border-t-transparent rounded-full animate-spin absolute right-3" />
+                )}
+              </div>
+
+              {/* Autocomplete Dropdown */}
+              {showSearchDropdown && searchResults.length > 0 && (
+                <div className="absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50 overflow-hidden">
+                  <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gray-400 border-b border-gray-50">
+                    Matching Products
+                  </div>
+                  {searchResults.map((prod) => (
+                    <Link
+                      key={prod._id}
+                      to={`/product/${prod._id}`}
+                      onClick={() => { setShowSearchDropdown(false); setSearchQuery(''); }}
+                      className="flex items-center gap-3 px-3 py-2 hover:bg-gray-50 transition-colors"
+                    >
+                      <img
+                        src={prod.images?.[0] || 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=100&q=80'}
+                        alt=""
+                        className="w-8 h-10 object-cover rounded-lg bg-gray-100 flex-shrink-0"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-bold text-gray-900 truncate">{prod.name}</p>
+                        <p className="text-[10px] text-gray-400 capitalize">{prod.category} • ₹{prod.price?.toLocaleString()}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
           {/* Actions: Wishlist, Cart & Auth */}

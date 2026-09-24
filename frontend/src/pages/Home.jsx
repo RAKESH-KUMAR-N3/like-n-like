@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../utils/api';
 import ProductCard from '../components/ProductCard';
+import heroImage from '../assets/hero-image.png';
 
 function SkeletonCard() {
   return (
@@ -134,7 +135,7 @@ export default function Home() {
                 {/* Main Card */}
                 <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border border-white/15 aspect-[4/5] bg-gray-900 group">
                   <img
-                    src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80"
+                    src={heroImage}
                     alt="Haute Couture Collection"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import API from '../../utils/api';
 
-const ORDER_STATUSES = ['All', 'Placed', 'Confirmed', 'Packed', 'Shipped', 'Out for Delivery', 'Delivered', 'Cancelled'];
+const ORDER_STATUSES = ['All', 'Placed', 'Confirmed', 'Packed', 'Shipped', 'Out for Delivery', 'Delivered', 'Cancelled', 'Returns / Exchanges'];
 
 export default function AdminDashboard() {
   const { user } = useAuth();
@@ -110,9 +110,33 @@ export default function AdminDashboard() {
   const inTransitOrders = orders.filter((o) => ['Shipped', 'Out for Delivery'].includes(o.orderStatus)).length;
   const deliveredOrders = orders.filter((o) => o.orderStatus === 'Delivered').length;
 
+  // Return Management
+  const handleUpdateReturnStatus = async (orderId, newStatus) => {
+    try {
+      await API.put(`/orders/admin/${orderId}/return`, {
+        status: newStatus,
+        adminNotes: `Return status updated to ${newStatus} by admin`
+      });
+      setOrders((prev) =>
+        prev.map((o) =>
+          o._id === orderId
+            ? { ...o, returnRequest: { ...o.returnRequest, status: newStatus } }
+            : o
+        )
+      );
+      alert(`Return request updated to "${newStatus}"!`);
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to update return status');
+    }
+  };
+
   // Filtered Orders
   const filteredOrders = orders.filter((o) => {
-    const matchesStatus = statusFilter === 'All' || o.orderStatus === statusFilter;
+    let matchesStatus = false;
+    if (statusFilter === 'All') matchesStatus = true;
+    else if (statusFilter === 'Returns / Exchanges') matchesStatus = o.returnRequest?.requested === true;
+    else matchesStatus = o.orderStatus === statusFilter;
+
     const q = searchQuery.toLowerCase();
     const matchesSearch =
       !q ||
@@ -379,6 +403,45 @@ export default function AdminDashboard() {
                                   <span className="text-[10px] text-gray-400 font-mono">
                                     AWB: {order.trackingNumber}
                                   </span>
+                                )}
+
+                                {/* Return / Exchange Request Admin Actions */}
+                                {order.returnRequest?.requested && (
+                                  <div className="mt-2 p-2 bg-amber-50 rounded-xl border border-amber-200 text-[10px]">
+                                    <p className="font-extrabold text-amber-900">
+                                      {order.returnRequest.type}: <span className="underline">{order.returnRequest.status}</span>
+                                    </p>
+                                    <p className="text-amber-800 text-[9px] mt-0.5">Reason: {order.returnRequest.reason}</p>
+                                    {order.returnRequest.refundDetails && (
+                                      <p className="font-mono text-amber-800 text-[9px]">Refund: {order.returnRequest.refundDetails}</p>
+                                    )}
+                                    <div className="flex flex-wrap gap-1 mt-1.5">
+                                      <button
+                                        onClick={() => handleUpdateReturnStatus(order._id, 'Approved')}
+                                        className="px-1.5 py-0.5 bg-emerald-600 text-white rounded text-[9px] font-bold"
+                                      >
+                                        Approve
+                                      </button>
+                                      <button
+                                        onClick={() => handleUpdateReturnStatus(order._id, 'Pickup Scheduled')}
+                                        className="px-1.5 py-0.5 bg-blue-600 text-white rounded text-[9px] font-bold"
+                                      >
+                                        Pickup
+                                      </button>
+                                      <button
+                                        onClick={() => handleUpdateReturnStatus(order._id, 'Refund Completed')}
+                                        className="px-1.5 py-0.5 bg-purple-600 text-white rounded text-[9px] font-bold"
+                                      >
+                                        Refunded
+                                      </button>
+                                      <button
+                                        onClick={() => handleUpdateReturnStatus(order._id, 'Rejected')}
+                                        className="px-1.5 py-0.5 bg-rose-600 text-white rounded text-[9px] font-bold"
+                                      >
+                                        Reject
+                                      </button>
+                                    </div>
+                                  </div>
                                 )}
                               </div>
                             </td>

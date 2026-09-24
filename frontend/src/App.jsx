@@ -19,6 +19,8 @@ import Checkout from './pages/Checkout';
 import OrderSuccess from './pages/OrderSuccess';
 import MyOrders from './pages/MyOrders';
 import OrderDetail from './pages/OrderDetail';
+import Policies from './pages/Policies';
+import WhatsAppWidget from './components/WhatsAppWidget';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/Dashboard';
@@ -56,6 +58,7 @@ export default function App() {
                   <Route path="/product/:id" element={<ProductDetail />} />
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/wishlist" element={<Wishlist />} />
+                  <Route path="/policies" element={<Policies />} />
 
                   {/* Auth */}
                   <Route path="/login" element={<Login />} />
@@ -76,6 +79,7 @@ export default function App() {
                 </Routes>
               </main>
               <Footer />
+              <WhatsAppWidget />
             </div>
           </WishlistProvider>
         </CartProvider>

@@ -236,11 +236,100 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
+// @desc    Customer submits return / exchange request
+// @route   PUT /api/orders/:id/return
+// @access  Private
+const requestOrderReturn = async (req, res) => {
+  try {
+    const { type, reason, comment, exchangeSize, refundMode, refundDetails } = req.body;
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({ success: false, message: 'Order not found' });
+    }
+
+    if (order.user.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Not authorized' });
+    }
+
+    if (order.orderStatus !== 'Delivered') {
+      return res.status(400).json({ success: false, message: 'Only delivered orders can be returned or exchanged' });
+    }
+
+    order.returnRequest = {
+      requested: true,
+      type: type || 'Return',
+      reason: reason || 'Not specified',
+      comment: comment || '',
+      exchangeSize: exchangeSize || '',
+      refundMode: refundMode || 'UPI',
+      refundDetails: refundDetails || '',
+      status: 'Pending',
+      createdAt: new Date()
+    };
+
+    order.statusTimeline.push({
+      status: `${type || 'Return'} Requested`,
+      date: new Date(),
+      comment: `${type || 'Return'} requested due to: ${reason}`
+    });
+
+    await order.save();
+
+    res.json({
+      success: true,
+      message: `${type || 'Return'} request submitted successfully! Our team will review within 24 hours.`,
+      data: order
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// @desc    Admin reviews return / exchange request
+// @route   PUT /api/orders/admin/:id/return
+// @access  Private/Admin
+const adminUpdateReturn = async (req, res) => {
+  try {
+    const { status, adminNotes } = req.body;
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({ success: false, message: 'Order not found' });
+    }
+
+    if (!order.returnRequest?.requested) {
+      return res.status(400).json({ success: false, message: 'No return request found for this order' });
+    }
+
+    order.returnRequest.status = status;
+    if (adminNotes) order.returnRequest.adminNotes = adminNotes;
+
+    order.statusTimeline.push({
+      status: `Return: ${status}`,
+      date: new Date(),
+      comment: adminNotes || `Return request status updated to ${status}`
+    });
+
+    await order.save();
+
+    res.json({
+      success: true,
+      message: `Return request updated to ${status}`,
+      data: order
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   createOrder,
   getMyOrders,
   getOrderById,
   cancelOrder,
   getAllOrders,
-  updateOrderStatus
+  updateOrderStatus,
+  requestOrderReturn,
+  adminUpdateReturn
 };

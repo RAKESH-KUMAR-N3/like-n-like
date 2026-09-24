@@ -57,6 +57,22 @@ const orderSchema = new mongoose.Schema({
   deliveredAt: { type: Date },
   cancelledAt: { type: Date },
   cancellationReason: { type: String, default: '' },
+  returnRequest: {
+    requested: { type: Boolean, default: false },
+    type: { type: String, enum: ['Return', 'Exchange'], default: 'Return' },
+    reason: { type: String, default: '' },
+    comment: { type: String, default: '' },
+    exchangeSize: { type: String, default: '' },
+    refundMode: { type: String, default: 'UPI' },
+    refundDetails: { type: String, default: '' },
+    status: {
+      type: String,
+      enum: ['None', 'Pending', 'Approved', 'Pickup Scheduled', 'Refund Completed', 'Rejected'],
+      default: 'None'
+    },
+    adminNotes: { type: String, default: '' },
+    createdAt: { type: Date }
+  },
   statusTimeline: [
     {
       status: { type: String, required: true },
